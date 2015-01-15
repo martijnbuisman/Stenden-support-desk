@@ -39,6 +39,18 @@ class DB {
                     . "joined DATETIME, "
                     . "IconPath VARCHAR(60), "
                     . "group_id INT)");
+            
+            //Insert default user admin
+            $this->query("INSERT INTO users (`id`, `username`, `password`, `mail`, `salt`, `name`, `joined`, `IconPath`, `group_id`) "
+                    . "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)",
+                    array('cassshh',
+                        '23d972229963e493ae68b496969873f8b5c531e71b0063527c2791fc57e05593',
+                        'casvd@hotmail.com',
+                        '’N;o$V5J´‚â;C}|eŸá!‹QUƒäb:šÍ(m',
+                        'Cas van Dinter',
+                        date('Y-m-d H:i:s'),
+                        'icons/default.png',
+                        1));
         }
         if($this->query("DESCRIBE users_session")->error()){
             $this->query("CREATE TABLE users_session ("
@@ -46,11 +58,43 @@ class DB {
                     . "user_id INT, "
                     . "hash VARCHAR(64))");
         }
-        if($this->query("DESCRIBE messages")->error()){
-            $this->query("CREATE TABLE messages ("
+        if($this->query("DESCRIBE groups")->error()){
+            $this->query("CREATE TABLE groups ("
+                    . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+                    . "name VARCHAR(20), "
+                    . "permissions TEXT)");
+            
+            //Insert default groups
+            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
+                    . "VALUES (NULL, ?, ?)",
+                    array('administrator', '{"admin": 1}'));
+            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
+                    . "VALUES (NULL, ?, ?)",
+                    array('werknemer', '{"werknemer": 1}'));
+            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
+                    . "VALUES (NULL, ?, ?)",
+                    array('klant', '{"gb": 1, "ol": 0}'));
+            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
+                    . "VALUES (NULL, ?, ?)",
+                    array('klant', '{"gb": 1, "ol": 1}'));
+        }
+        if($this->query("DESCRIBE faq")->error()){
+            $this->query("CREATE TABLE faq ("
+                    . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+                    . "question TEXT)");
+        }
+        if($this->query("DESCRIBE tickets")->error()){
+            $this->query("CREATE TABLE tickets ("
                     . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     . "user_id INT, "
-                    . "message VARCHAR(250))");
+                    . "ticket VARCHAR(500), "
+                    . "werknemer_id INT, "
+                    . "status INT)");
+        }
+        if($this->query("DESCRIBE status")->error()){
+            $this->query("CREATE TABLE groups ("
+                    . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+                    . "status VARCHAR(30))");
         }
     }
 
