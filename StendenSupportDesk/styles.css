@@ -1,0 +1,170 @@
+/*<!--
+Cas van Dinter
+384755
+-->*/
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 27-dec-2014, 19:13:40
+    Author     : Cas
+*/
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    background-color: white;
+    font-family: sans-serif;
+
+}
+body{
+
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+div#header{
+    width: 100%;
+    height: 60px;
+
+    background-color: #0061C2;
+}
+div#headerContent{
+    margin: 0 auto;
+    max-width: 1100px;
+    padding-top: 13px;
+
+    //background-color: #ececec;
+}
+div#headerHome{
+    float: left;
+
+    //background-color: cadetblue;
+}
+div#headerAccount{
+    float: right;
+    padding-top: 6px;
+    //background-color: cadetblue;
+}
+div#message{
+    margin: 0 auto;
+    width: 40%;
+    max-width: 400px;
+    min-width: 200px;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    background-color: white;
+    border-radius: 3px;
+    border: #0061C2 solid 2px;
+}
+div#loginTitle{
+    margin: 0 auto;
+    height: 40px;
+
+    text-align: center;
+
+    background-color: #0061C2;
+    color: white;
+
+}
+div#tweetsContainer{
+    margin: 0 auto;
+    width: 40%;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    background-color: white;
+    border-radius: 3px;
+}
+div.tweet{
+    text-align: justify;
+    min-height: 102px;
+    padding: 10px;
+}
+div.tweetPic{
+    float: left;
+    width: 72px;
+    height: 72px;
+
+    padding: 15px;
+    padding-right: 20px;
+}
+#Button{
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: 120%;
+    border: none;
+    color: #ffffff;
+    background: #007CE8;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+
+}
+#msg{
+    border: 2px dashed #D1C7AC;
+    padding: 10px;
+    margin: 5px;
+}
+div.field{
+    margin: 10px;
+    padding: 10px;
+}
+div#form{
+    margin: 0 auto;
+    text-align: center;
+}
+input{
+    width: 80%;
+    border: 2px solid #0061C2;
+    padding: 10px;
+    margin: 0 0 10px 0;
+    
+    font-family: cursive;
+}
+div.error{
+    width:100%;
+    height: 20px;
+    text-align: center;
+    
+    color: white;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    background-color: #ff5b5b;
+}
+div.succes{
+    width:100%;
+    height: 20px;
+    text-align: center;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    
+    background-color: #5bff74;
+}
+div#profileContainer{
+    margin: 0 auto;
+    width: 40%;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    background-color: white;
+    border-radius: 3px;
+}
+div#profile{
+    width: 100%;
+}
