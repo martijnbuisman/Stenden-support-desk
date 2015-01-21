@@ -23,6 +23,7 @@ html{
 body{
 
 }
+
 a{
     text-decoration: none;
     color: white;
@@ -47,8 +48,8 @@ div#headerHome{
 }
 div#headerAccount{
     float: right;
-    padding-top: 6px;
-    //background-color: cadetblue;
+    padding: 8px;
+    background-color: #007CE8;
 }
 div#message{
     margin: 0 auto;
@@ -73,7 +74,6 @@ div#loginTitle{
 
     background-color: #0061C2;
     color: white;
-
 }
 div#tweetsContainer{
     margin: 0 auto;
@@ -100,7 +100,7 @@ div.tweetPic{
     padding: 15px;
     padding-right: 20px;
 }
-#Button{
+.Button{
     font-family: Calibri;
     font-weight: bold;
     font-size: 120%;
@@ -108,8 +108,34 @@ div.tweetPic{
     color: #ffffff;
     background: #007CE8;
     padding: 10px 20px 10px 20px;
+    margin: 10px;
     text-decoration: none;
-
+}
+.ButtonUpdate{
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: 100%;
+    border: none;
+    color: #ffffff;
+    background: #4c98f3;
+    padding: 7px;
+    margin: 5px;
+    text-decoration: none;
+}
+.ButtonDelete{
+    font-family: Calibri;
+    font-weight: bold;
+    font-size: 100%;
+    border: none;
+    color: #ffffff;
+    background: #f34c4c;
+    padding: 7px;
+    margin: 5px;
+    text-decoration: none;
+}
+.buttonContainer{
+    float: right;
+    margin: 20px;
 }
 #msg{
     border: 2px dashed #D1C7AC;
@@ -120,11 +146,11 @@ div.field{
     margin: 10px;
     padding: 10px;
 }
-div#form{
+div#formLogin{
     margin: 0 auto;
     text-align: center;
 }
-input{
+div#formLogin input{
     width: 80%;
     border: 2px solid #0061C2;
     padding: 10px;
@@ -171,7 +197,7 @@ div#profile{
 div.wrapper {
     float: left;
     width: 20%;
-    min-width: 120px;
+    min-width: 220px;
 }
 
 div.wrapper p{
@@ -241,4 +267,158 @@ nav.vertical > ul > li > div > ul > li:hover > a {
     background-color: lightBlue;
     color: rgb(255,255,255);
     padding: 10px 0 10px 50px;
+}
+div.ProfileContainer{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+div.ProfileContainer{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+img.ProfilePic{
+    width: 75%;
+    border-radius: 100%;
+}
+div.content{
+    float: left;
+    width: 70%;
+    min-width: 600px;
+    margin: 2%;
+}
+a.buttonLink {
+    text-decoration: none;
+
+    display: block;
+    padding: 1%;
+    width: 40%;
+    background: #007CE8;
+    border: 2px solid #0061C2;
+
+    color: white;
+    text-align: center;
+    font-size: 300%;
+    font-family: monospace;
+}
+/* Basic Grey */
+.basic-grey {
+    margin-left:auto;
+    margin-right:auto;
+    max-width: 500px;
+    background: #F7F7F7;
+    padding: 25px 15px 25px 10px;
+    font: 12px Georgia, "Times New Roman", Times, serif;
+    color: #888;
+    text-shadow: 1px 1px 1px #FFF;
+    border:1px solid #E4E4E4;
+}
+.basic-grey h1 {
+    font-size: 25px;
+    padding: 0px 0px 10px 40px;
+    display: block;
+    border-bottom:1px solid #E4E4E4;
+    margin: -10px -15px 30px -10px;;
+    color: #888;
+}
+.basic-grey h1>span {
+    display: block;
+    font-size: 11px;
+}
+.basic-grey label {
+    display: block;
+    margin: 0px;
+}
+.basic-grey label>span {
+    float: left;
+    width: 20%;
+    text-align: right;
+    padding-right: 10px;
+    margin-top: 10px;
+    color: #888;
+}
+.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey input[type="number"], .basic-grey input[type="password"], .basic-grey textarea, .basic-grey select {
+    border: 1px solid #DADADA;
+    color: #888;
+    height: 30px;
+    margin-bottom: 16px;
+    margin-right: 6px;
+    margin-top: 2px;
+    outline: 0 none;
+    padding: 3px 3px 3px 5px;
+    width: 70%;
+    font-size: 12px;
+    line-height:15px;
+    box-shadow: inset 0px 1px 4px #ECECEC;
+    -moz-box-shadow: inset 0px 1px 4px #ECECEC;
+    -webkit-box-shadow: inset 0px 1px 4px #ECECEC;
+}
+.basic-grey textarea{
+    padding: 5px 3px 3px 5px;
+}
+.basic-grey select {
+    background: #FFF url('down-arrow.png') no-repeat right;
+    background: #FFF url('down-arrow.png') no-repeat right;
+    appearance:none;
+    -webkit-appearance:none; 
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+    width: 70%;
+    height: 35px;
+    line-height: 25px;
+}
+.basic-grey textarea{
+    height:100px;
+}
+.basic-grey .button {
+    background: #007CE8;
+    border: none;
+    padding: 10px 25px 10px 25px;
+    color: #FFF;
+    box-shadow: 1px 1px 5px #B6B6B6;
+    border-radius: 3px;
+    text-shadow: 1px 1px 1px #007CE8;
+    cursor: pointer;
+}
+.basic-grey .button:hover {
+    background: #0061C2;
+}
+table.contentTable{
+    width: 100%;
+}
+table.contentTable th{
+    background-color: #007CE8;
+    color: white;
+    padding: 20px 0px 20px 0px;
+    font-size: 125%;
+}
+table.contentTable td{
+    font-size: 120%;
+    text-align: center;
+    padding: 10px;
+}
+table.contentTable tr:nth-child(even){
+    background-color: #EBECFF;
+}
+table.contentTable tr:nth-child(odd){
+    background-color: #D3E3F5;
+}
+div.faqQuestion{
+    width: 100%;
+    background-color: #007CE8;
+    color: white;
+    padding: 8px;
+    font-family: monospace;
+}
+div.faqAnswer{
+    width: 100%;
+    padding: 8px;
+    font-family: monospace;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #007CE8;
 }

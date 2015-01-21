@@ -8,6 +8,9 @@ $user = new User();
 if ($user->isLoggedIn()) {
     Redirect::to("index.php");
 }
+if (Session::exists('companyError')) {
+    echo "<div class='error'><p>" . Session::flash('companyError') . "</p></div>";
+}
 if (Input::exists()) {
     if (Token::check(Input::get('token'))) {
         $validate = new Validate();
@@ -21,7 +24,6 @@ if (Input::exists()) {
         ));
 
         if ($validation->passed()) {
-
             $remember = (Input::get('remember') === 'on') ? true : false;
             $login = $user->login(Input::get('Gebruikersnaam'), Input::get('Wachtwoord'), $remember);
 
@@ -55,10 +57,10 @@ if (Input::exists()) {
                 <div id="loginTitle">
                     <h1>Login</h1>
                 </div>
-                <div id="form">
+                <div id="formLogin">
                     <form action="" method="post">
                         <div class="field">
-                            <input type="text" name="Gebruikersnaam" id="Gebruikersnaam" value="<?php echo escape(Input::get('username')); ?>" placeholder="Gebruikersnaam"/>
+                            <input type="text" name="Gebruikersnaam" id="Gebruikersnaam" value="<?php echo escape(Input::get('Gebruikersnaam')); ?>" placeholder="Gebruikersnaam"/>
                         </div>
 
                         <div class="field">
@@ -73,7 +75,7 @@ if (Input::exists()) {
                         </div>
 
                         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>"/>
-                        <input type="submit" value="Log in" id="Button"/>
+                        <input type="submit" value="Log in" class="Button"/>
                     </form>
                     <br/>
                 </div>

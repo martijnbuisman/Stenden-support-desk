@@ -28,8 +28,8 @@ class User {
         }
     }
 
-    public function create($fields = array()) {
-        if (!$this->_db->insert('users', $fields)) {
+    public function create($table, $fields = array()) {
+        if (!$this->_db->insert($table, $fields)) {
             throw new Exception('There was a problem creating an account');
         }
     }
@@ -82,7 +82,8 @@ class User {
     }
 
     public function hasPermission($key) {
-        $group = $this->_db->query("SELECT * FROM groups WHERE id = '{$this->data()->group_id}'");
+        $company = $this->_db->query("SELECT * FROM company WHERE id = '{$this->data()->company_id}'");
+        $group = $this->_db->query("SELECT * FROM groups WHERE id = '{$company->first()->group_id}'");
         if ($group->count()) {
             $permissions = json_decode($group->first()->permissions, true);
             if (isset($permissions[$key])) {

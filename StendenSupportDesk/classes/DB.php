@@ -26,64 +26,103 @@ class DB {
         }
         return self::$_instance;
     }
-    
-    private function checkTables(){
-        if($this->query("DESCRIBE users")->error()){
+
+    private function checkTables() {
+        if ($this->query("DESCRIBE users")->error()) {
             $this->query("CREATE TABLE users ("
                     . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     . "username VARCHAR(20), "
                     . "password VARCHAR(64), "
-                    . "mail VARCHAR(50), "
+                    . "email VARCHAR(50), "
                     . "salt VARCHAR(32), "
                     . "name VARCHAR(50), "
                     . "joined DATETIME, "
                     . "IconPath VARCHAR(60), "
-                    . "group_id INT)");
-            
+                    . "company_id INT, "
+                    . "function VARCHAR(50))");
+
             //Insert default user admin
-            $this->query("INSERT INTO users (`id`, `username`, `password`, `mail`, `salt`, `name`, `joined`, `IconPath`, `group_id`) "
-                    . "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)",
-                    array('cassshh',
-                        '23d972229963e493ae68b496969873f8b5c531e71b0063527c2791fc57e05593',
-                        'casvd@hotmail.com',
-                        '’N;o$V5J´‚â;C}|eŸá!‹QUƒäb:šÍ(m',
-                        'Cas van Dinter',
-                        date('Y-m-d H:i:s'),
-                        'icons/default.png',
-                        1));
+            $salt = Hash::salt(32);
+            $this->insert('users', array(
+                'username' => 'cassshh',
+                'password' => Hash::make('password', $salt),
+                'email' => 'casvd@hotmail.com',
+                'name' => 'Cas van Dinter',
+                'salt' => $salt,
+                'joined' => date("Y-m-d H:i:s"),
+                'IconPath' => 'icons/default.png',
+                'company_id' => 1,
+                'function' => 'Administrator'
+            ));
+//            $this->query("INSERT INTO `stendensupportdesktest`.`users` (`id`, `username`, `password`, `email`, `salt`, `name`, `joined`, `IconPath`, `company_id`, `function`) VALUES ('1', 'cassshh', '23d972229963e493ae68b496969873f8b5c531e71b0063527c2791fc57e05593', 'casvd@hotmail.com', '’N;o$V5J´‚â;C}|eŸá!‹QUƒäb:šÍ(m', 'Cas van Dinter', '2015-01-22 06:15:14', 'icons/default.png', '1', 'Administrator');");
         }
-        if($this->query("DESCRIBE users_session")->error()){
+        if ($this->query("DESCRIBE users_session")->error()) {
             $this->query("CREATE TABLE users_session ("
                     . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     . "user_id INT, "
                     . "hash VARCHAR(64))");
         }
-        if($this->query("DESCRIBE groups")->error()){
+        if ($this->query("DESCRIBE groups")->error()) {
             $this->query("CREATE TABLE groups ("
                     . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                    . "name VARCHAR(20), "
+                    . "name VARCHAR(40), "
                     . "permissions TEXT)");
-            
+
             //Insert default groups
-            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
-                    . "VALUES (NULL, ?, ?)",
-                    array('administrator', '{"admin": 1}'));
-            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
-                    . "VALUES (NULL, ?, ?)",
-                    array('werknemer', '{"werknemer": 1}'));
-            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
-                    . "VALUES (NULL, ?, ?)",
-                    array('klant', '{"gb": 1, "ol": 0}'));
-            $this->query("INSERT INTO groups (`id`, `name`, `permissions`) "
-                    . "VALUES (NULL, ?, ?)",
-                    array('klant', '{"gb": 1, "ol": 1}'));
+            $this->insert('groups', array(
+                'id' => '1',
+                'name' => 'Administrator',
+                'permissions' => '{"admin": 1}'
+            ));
+            $this->insert('groups', array(
+                'id' => '2',
+                'name' => 'Werknemer',
+                'permissions' => '{"werknemer": 1}'
+            ));
+            $this->insert('groups', array(
+                'id' => '3',
+                'name' => 'Klant+',
+                'permissions' => '{"gb": 1, "ol": 1}'
+            ));
+            $this->insert('groups', array(
+                'id' => '4',
+                'name' => 'Klant',
+                'permissions' => '{"gb": 1, "ol": 0}'
+            ));
         }
-        if($this->query("DESCRIBE faq")->error()){
+        if ($this->query("DESCRIBE company")->error()) {
+            $this->query("CREATE TABLE company ("
+                    . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
+                    . "name VARCHAR(50), "
+                    . "adres VARCHAR(40), "
+                    . "phone VARCHAR(16), "
+                    . "email VARCHAR(30), "
+                    . "group_id INT)");
+
+            //Insert standard StendenAdmin & StendenEmployee
+            $this->insert('company', array(
+                'name' => 'StendenAdmin',
+                'adres' => 'AdminAdress',
+                'phone' => '0123456789',
+                'email' => 'ehelp@stenden.com',
+                'group_id' => 1
+            ));
+            $this->insert('company', array(
+                'name' => 'StendenEmployee',
+                'adres' => 'EmployeeAdress',
+                'phone' => '0123456789',
+                'email' => 'ehelp@stenden.com',
+                'group_id' => 2
+            ));
+        }
+
+        if ($this->query("DESCRIBE faq")->error()) {
             $this->query("CREATE TABLE faq ("
                     . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
-                    . "question TEXT)");
+                    . "question VARCHAR(100), "
+                    . "answer TEXT)");
         }
-        if($this->query("DESCRIBE tickets")->error()){
+        if ($this->query("DESCRIBE tickets")->error()) {
             $this->query("CREATE TABLE tickets ("
                     . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     . "user_id INT, "
@@ -91,8 +130,8 @@ class DB {
                     . "werknemer_id INT, "
                     . "status INT)");
         }
-        if($this->query("DESCRIBE status")->error()){
-            $this->query("CREATE TABLE groups ("
+        if ($this->query("DESCRIBE status")->error()) {
+            $this->query("CREATE TABLE status ("
                     . "id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, "
                     . "status VARCHAR(30))");
         }
@@ -118,7 +157,7 @@ class DB {
         }
         return $this;
     }
-    
+
     public function insert($table, $fields = array()) {
         $keys = array_keys($fields);
         $values = '';
@@ -139,7 +178,7 @@ class DB {
         }
         return false;
     }
-    
+
     public function update($table, $id, $fields) {
         $set = '';
         $x = 1;
