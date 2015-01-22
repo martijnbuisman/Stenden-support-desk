@@ -1,4 +1,8 @@
 <?php
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 if ($user->hasPermission('admin')) {
     //code
     echo "<h1>Autorisatie -> Gebruiker -> Nieuw -> Admin</h1>";

@@ -1,5 +1,8 @@
 <?php
-
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 class Redirect {
 
     public static function to($location = null) {

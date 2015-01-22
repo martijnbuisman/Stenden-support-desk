@@ -1,9 +1,17 @@
 <?php
-if ($user->hasPermission('admin')) {
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
+if ($user->hasPermission('admin') || $user->hasPermission('werknemer')) {
 //code
     if (Input::get('update')) {
         $id = Input::get('update');
-        $userDB = $db->query("SELECT * FROM users WHERE id = '{$id}'");
+        if ($user->hasPermission('admin')) {
+            $userDB = $db->query("SELECT * FROM users WHERE id = '{$id}'");
+        } else if ($user->hasPermission('werknemer')) {
+            $userDB = $db->query("SELECT * FROM users WHERE id = '{$id}' AND company_id != '1' AND company_id != '2'");
+        }
         if ($userDB->count()) {
             echo "<h1>Gebruiker updaten</h1>";
             if (Input::exists()) {

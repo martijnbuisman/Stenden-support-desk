@@ -1,5 +1,8 @@
 <?php
-
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 class Validate {
 
     private $_passed = false,

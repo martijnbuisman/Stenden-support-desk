@@ -1,5 +1,8 @@
 <?php
-
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 class Cookie {
     public static function exists($name) {
         return (isset($_COOKIE[$name])) ? true : false ;

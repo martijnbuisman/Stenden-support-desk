@@ -341,7 +341,7 @@ a.buttonLink {
     margin-top: 10px;
     color: #888;
 }
-.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey input[type="number"], .basic-grey input[type="password"], .basic-grey textarea, .basic-grey select {
+.basic-grey input[type="text"], .basic-grey input[type="email"], .basic-grey input[type="number"], .basic-grey input[type="password"], .basic-grey input[type="file"], .basic-grey textarea, .basic-grey select {
     border: 1px solid #DADADA;
     color: #888;
     height: 30px;

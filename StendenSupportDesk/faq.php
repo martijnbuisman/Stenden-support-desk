@@ -1,5 +1,9 @@
 <?php
-if ($user->hasPermission('admin')) {
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
+if ($user->hasPermission('admin') || $user->hasPermission('werknemer') || $user->hasPermission('ol') || $user->hasPermission('gb')) {
     //code
     $faqs = $db->query("SELECT * FROM faq");
     echo "<h1>Frequently Asked Questions</h1><br/>";

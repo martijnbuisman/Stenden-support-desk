@@ -1,5 +1,9 @@
 <?php
-if ($user->hasPermission('admin')) {
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
+if ($user->hasPermission('admin') || $user->hasPermission('werknemer')) {
     //code
     echo "<h1>Autorisatie -> Gebruiker -> Bestaand</h1>";
     ?>
@@ -52,7 +56,7 @@ if ($user->hasPermission('admin')) {
                 <?php
                 foreach ($usersDB->results() as $userDB) {
                     $companyName = $db->query("SELECT * FROM company WHERE id = '{$userDB->company_id}'");
-                    if(!$companyName->count()){
+                    if (!$companyName->count()) {
                         $companyName = "<font color='red'>Removed</font>";
                     } else {
                         $companyName = $companyName->first()->name;
@@ -63,7 +67,12 @@ if ($user->hasPermission('admin')) {
                     echo "<td>{$userDB->email}</td>";
                     echo "<td>{$companyName}</td>";
                     echo "<td>{$userDB->function}</td>";
-                    echo "<td><a class='ButtonUpdate' href='index.php?page=autorisation_user_update&update={$userDB->id}'>Update</a><a class='ButtonDelete' href='index.php?page=autorisation_user_exist&delete={$userDB->id}'>Verwijderen</a></td>";
+                    if ($userDB->company_id !== '1' && $userDB->company_id !== '2' || $user->hasPermission('admin')) {
+                        echo "<td><a class='ButtonUpdate' href='index.php?page=autorisation_user_update&update={$userDB->id}'>Update</a>"
+                        . "<a class='ButtonDelete' href='index.php?page=autorisation_user_exist&delete={$userDB->id}'>Verwijderen</a></td>";
+                    } else {
+                        echo "<td></td>";
+                    }
                     echo "</tr>";
                 }
             } else {

@@ -1,5 +1,8 @@
 <?php
-
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 class DB {
 
     private static $_instance = null;

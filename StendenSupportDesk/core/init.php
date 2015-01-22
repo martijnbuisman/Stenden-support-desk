@@ -1,9 +1,8 @@
-<!--
-Cas van Dinter
-384755
--->
 <?php
-
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 session_start();
 
 $GLOBALS['config'] = array(

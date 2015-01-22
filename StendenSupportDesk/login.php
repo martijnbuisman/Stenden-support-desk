@@ -1,8 +1,8 @@
-<!--
-Cas van Dinter
-384755
--->
 <?php
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 require 'core/init.php';
 $user = new User();
 if ($user->isLoggedIn()) {

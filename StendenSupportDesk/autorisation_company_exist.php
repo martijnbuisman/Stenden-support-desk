@@ -1,5 +1,9 @@
 <?php
-if ($user->hasPermission('admin')) {
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
+if ($user->hasPermission('admin') || $user->hasPermission('werknemer')) {
     //code
     if (Input::get('delete')) {
         $id = Input::get('delete');

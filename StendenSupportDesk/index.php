@@ -1,4 +1,8 @@
 <?php
+///////////////////
+//Cas van Dinter///
+///////384755//////
+///////////////////
 require_once 'core/init.php';
 
 $user = new User();
@@ -38,7 +42,9 @@ if (!$companyExist->count()) {
         <div class="wrapper">
             <div class="ProfileContainer">
                 <div class="ProfileContainerPic">
-                    <img src="<?php echo escape($user->data()->IconPath); ?>" class="ProfilePic"/>
+                    <a href="index.php?page=profile">
+                        <img src="<?php echo escape($user->data()->IconPath); ?>" class="ProfilePic"/>
+                    </a>
                 </div>
                 <h2><?php echo escape($user->data()->name); ?></h2>
                 <h3><?php
@@ -56,42 +62,54 @@ if (!$companyExist->count()) {
                             <a href="#">Instellingen</a>
                             <div>
                                 <ul>
-                                    <?php if ($user->hasPermission('admin')) { ?>
-                                        <li><a href="index.php?page=autorisation">Autorisatie</a></li>
-                                        <li><a href="#">Systeem instellingen</a></li>
-                                    <?php } ?>
-                                    <li><a href="#">Archief</a></li>
+                                    <li><a href="index.php?page=autorisation">Autorisatie</a></li>
                                 </ul>
                             </div>
                         </li>
-                    <?php } ?>
-                    <li>
-                        <a href="index.php?page=faq">FAQ</a>
-                        <div>
-                            <ul>
-                                <li><a href="index.php?page=faq_archief">FAQ archief</a></li>                              
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">Tickets</a>
-                        <div>
-                            <ul>
-                                <li><a href="#">Ticket aanmaken</a></li>
-                                <li><a href="#">Ticket inzien</a></li>
-                                <li><a href="#">Ticket sluiten</a></li>                             
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">Ticket archief</a>
-                        <div>
-                            <ul>
-                                <li><a href="#">Ticket archief inzien</a></li>
-                                <li><a href="#">Ticket archief aanpassen</a></li>                           
-                            </ul>
-                        </div>
-                    </li>
+                        <?php
+                    }
+                    if ($user->hasPermission('admin') || $user->hasPermission('werknemer') || $user->hasPermission('ol') || $user->hasPermission('gb')) {
+                        ?>
+                        <li>
+                            <a href="index.php?page=faq">FAQ</a>
+                            <?php if ($user->hasPermission('admin') || $user->hasPermission('werknemer')) { ?>
+                                <div>
+                                    <ul>
+                                        <li><a href="index.php?page=faq_archief">FAQ archief</a></li>                              
+                                    </ul>
+                                </div>
+                            <?php } ?>
+                        </li>
+                        <?php
+                    }
+                    if ($user->hasPermission('admin') || $user->hasPermission('werknemer') || $user->hasPermission('ol')) {
+                        ?>
+                        <li>
+                            <a href="#">Tickets</a>
+                            <div>
+                                <ul>
+                                    <li><a href="#">Ticket aanmaken</a></li>
+                                    <li><a href="#">Ticket inzien</a></li>
+                                    <li><a href="#">Ticket sluiten</a></li>                             
+                                </ul>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    if ($user->hasPermission('admin') || $user->hasPermission('werknemer')) {
+                        ?>
+                        <li>
+                            <a href="#">Ticket archief</a>
+                            <div>
+                                <ul>
+                                    <li><a href="#">Ticket archief inzien</a></li>
+                                    <li><a href="#">Ticket archief aanpassen</a></li>                           
+                                </ul>
+                            </div>
+                        </li>
+                        <?php
+                    }
+                    ?>
                 </ul>
             </nav>
         </div>
